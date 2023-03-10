@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.tunisianet.pageObjects.CustomerAccountPage;
 import org.tunisianet.pageObjects.ItemDisplayPage;
 import org.tunisianet.pageObjects.LandingPage;
@@ -52,7 +53,9 @@ public class BuyPhoneSteps {
     @Before
     public void setup() {
         System.setProperty(WEBDRIVER_CHROME_DRIVER, CHROMEDRIVER_PATH);
-        webdriver = new ChromeDriver();
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
+        webdriver = new ChromeDriver(ops);
         webdriver.get(TUNISIANET_HOME_PAGE);
         webdriver.manage().window().maximize();
     }
